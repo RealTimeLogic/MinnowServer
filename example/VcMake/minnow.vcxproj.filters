@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="MinnowServer">
+      <UniqueIdentifier>{80b3905d-a0ad-428f-b171-85929c516087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example">
+      <UniqueIdentifier>{6ad4776b-1e87-4858-b1bb-3bc094e068fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JSON">
+      <UniqueIdentifier>{baec0dfb-7c1f-4eb1-9017-c2c1b2e0e4da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IoT">
+      <UniqueIdentifier>{af144312-e6a8-4b87-aeb7-1848cb4a2900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SeLib">
+      <UniqueIdentifier>{198966f1-1926-4df7-9a7b-8b7375bff3fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\MSLib.c">
+      <Filter>MinnowServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\index.c">
+      <Filter>Example</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\JsonStaticAlloc.c">
+      <Filter>Example</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.c">
+      <Filter>Example</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JSON\src\AllocatorIntf.c">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JSON\src\BaAtoi.c">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JSON\src\BufPrint.c">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JSON\src\JEncoder.c">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JSON\src\JParser.c">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JSON\src\JVal.c">
+      <Filter>JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\SMQ\src\SMQClient.c">
+      <Filter>IoT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\SMQ\src\selib.c">
+      <Filter>SeLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

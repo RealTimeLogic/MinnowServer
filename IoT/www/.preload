@@ -1,0 +1,127 @@
+
+--[[
+
+The SMQ broker setup and the server side SMQ client.
+
+The server side SMQ client facilitates the connection and tear down of
+the communication between browsers and devices (Minnow Servers). One
+browser window may connect to one device.
+
+With SMQ, all connected browsers and devices are clients. However, the
+server application sets up a connection that resembles a client
+(browser) to server WebSocket connection.
+
+A browser cannot connect to a device if the device is not already
+connected (registered). Each registered device is stored in table
+'devices', where the table lookup key is the device's ephemeral topic
+ID.
+'
+During a standard WebSocket connection, the device immediately sends a
+number of messages to the browser. When a device connects using SMQ,
+no browser is initially connected to this device. The code below
+solves this by storing all messages received from the device in
+'messages'. These messages are then sent to the browser as soon as it
+connects, thus simulating a standard WebSocket connection between a
+browser and the device.
+
+The server side application also simulates a socket disconnect by
+forcefully closing the connection should the peer disconnect. For
+example, if the browser connection goes down, the device SMQ
+connection is also closed, thus simulating a WebSocket close event for
+the Minnow Server.
+
+Note that the following SMQ setup used is not a traditional SMQ setup
+since no named topics are used. We only communicate by using ephemeral
+topic IDs (etid). See the documentation for details:
+https://realtimelogic.com/ba/doc/?url=SMQ.html#SendersAddress
+--]]
+
+local smq -- The SMQ broker, created below
+local devices={} -- All connected devices
+local browsers={} -- All connected browsers
+
+function getdevs() return devices end -- Used by LSP code
+
+-- SMQ broker authenticate callback.
+local function authenticate(credentials, info)
+   return 0 -- Accept. Authentication is not in SMQ, but in the device.
+end
+
+
+-- SMQ broker onconnect callback is called just after broker accepted the client
+local function onconnect(tid, info, peer)
+   if info.data.device then -- URL includes ?device= -- i.e. a device is connecting
+      -- Create a new object and store object in 'devices', where device tid is the key
+      devices[tid]={
+         peer=info.sock:peername(),
+         info=info.info,
+         messages={}, -- Store initial device messages here
+      }
+   else -- not a device. Assume this is a browser.
+      local devTid=0 -- Set to invalid tid.
+      -- Check if the URL includes ?connect=number
+      pcall(function() devTid=tonumber(info.data.connect) end)
+      local dev=devices[devTid] -- Do we have the requested device?
+      if dev then -- Yes, connect browser with device
+         if dev.usedby then -- Locked by another browser Window
+            smq:shutdown("Device is locked", tid)  -- Send a close message to browser.
+            return
+         end
+         dev.usedby=info.sock:peername() -- Device locked by browser with IP addr.
+         for _,msg in pairs(dev.messages) do -- Send all stored device messages to browser.
+            -- Publish on behalf of device. Browser now thinks it is the device sending the messages.
+            smq:pubon(msg.msg, tid, devTid, msg.subtid)
+         end
+         dev.messages=nil -- No longer needed
+         dev.browserTid=tid
+         browsers[tid]=devTid -- Browser with ID 'tid' using device with ID 'devTid'
+      else
+         trace("Browser attempted using unknown device tid:", info.data.connect)
+         smq:shutdown("Invalid use", tid) -- Send a close message to browser.
+      end
+   end
+end
+
+
+-- SMQ broker onclose callback triggers when any client disconnects.
+function onclose(tid)
+   local devTid = browsers[tid] -- Check if it is a registered browser that closed the connection.
+   if devTid then -- Yes, a browser.
+      browsers[tid]=nil
+      devices[devTid]=nil
+      smq:shutdown("Browser closed connection", devTid) -- Send a close message to device.
+      -- The device will now revert to WebSocket mode.
+   else -- not a browser
+      local dev=devices[tid] -- Check if it is a registered device that closed the connection.
+      if dev then -- Yes, a device.
+         devices[tid]=nil
+         if dev.browserTid then -- Is a browser connected to the device
+            browsers[dev.browserTid]=nil
+            smq:shutdown("Device closed connection", dev.browserTid) -- Send close message to browser
+         end
+      end
+   end
+end
+
+
+
+-- Create one SMQ broker instance
+smq = require"smq.hub".create{
+   authenticate=authenticate,
+   onconnect=onconnect,
+   onclose=onclose,
+}
+
+-- Subscribe to 'self', which is TID #1 for the server's SMQ client.
+-- The onmsg callback collects all initial messages sent by the device
+-- and stores the messages in the "messages" array. The server keeps
+-- the messages until a browser connects.
+smq:subscribe("self",{onmsg=function (msg, ptid, tid, subtid)
+   local dev = devices[ptid] -- Sender must be a device and receiver must be TID #1
+   if tid ~= 1 or not dev then smq:shutdown("Invalid use", ptid) return end
+   table.insert(dev.messages, {subtid=subtid, msg=msg})
+end})
+
+function smqConnect(request)
+   smq:connect(request) -- Upgrade HTTP(S) request to a SimpleMQ connection
+end
