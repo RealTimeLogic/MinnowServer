@@ -30,7 +30,7 @@ TBD
 
 The example provides a direct WebSocket server API designed for local Intranet use and an optional IoT connection that enables the WebSocket server running on a private network and protected by a firewall to also be accessible from the Internet. The following figure shows how a local user and how an external user can access the same device.
 
-!["Local or External Access](https://github.com/RealTimeLogic/MinnowServer/raw/doc/img/local-and-remote-conn.jpg "Local or External Access")
+!["Local or External Access](https://raw.githubusercontent.com/RealTimeLogic/MinnowServer/master/doc/img/local-and-remote-conn.jpg "Local or External Access")
 
 **Figure 2: Access reference platform locally or via the Internet**
 
@@ -43,8 +43,8 @@ The Minnow Server and the reference platform can be compiled for any microcontro
 ### Prerequisites
 Perform the following commands on the command line to clone the Minnow Server and the required libraries.
 
-git clone https://github.com/RealTimeLogic/MinnowServer.git
-git clone https://github.com/RealTimeLogic/JSON.git
+git clone https://github.com/RealTimeLogic/MinnowServer.git  
+git clone https://github.com/RealTimeLogic/JSON.git  
 git clone https://github.com/RealTimeLogic/SMQ.git
 
 The JSON and SMQ libraries are used by the Minnow Server reference example. The SMQ stack is needed even if you do not plan on IoT enabling the reference platform since the Minnow Server uses the SMQ TCP/IP porting layer.
