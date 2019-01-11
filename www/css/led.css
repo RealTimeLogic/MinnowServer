@@ -1,0 +1,148 @@
+#led-panel{
+  /*position: relative;*/
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  width: 1500px;
+  max-width: 95vw;
+  margin: 10px auto;
+  border-radius: var(--border-radius);
+  grid-gap: 10px;
+}
+.led-section{
+  width: auto;
+  max-width: 95vw;
+  height: 125px;
+  display: grid;
+  /*grid-template-columns: repeat(3, 1fr);*/
+  grid-template-areas: "led tag switch";
+  align-items: center;
+  /*justify-items: center;*/
+  background: var(--color5);
+  border-radius: var(--border-radius);
+  margin: 0;
+}
+.led-section .led-tag{
+  position: relative;
+  display: flex;
+  min-width: 100px;
+  width: auto;
+  height: 50px;
+  padding: 5px;
+  /*background: var(--color2);
+  border-radius: var(--border-radius);*/
+  /*border-radius: 5px 55px 55px 5px;*/
+  align-items: center;
+  justify-content: center;
+  grid-area: tag;
+}
+.led-section .led-tag .tag-content{
+  position: absolute;
+  display: block;
+  max-width: 95%;
+  max-height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  color: var(--color2);
+}
+.led-section .led-light{
+  width: 50px;
+  height: 50px;
+  border-radius: 45%;
+  margin: auto;
+}
+.led-section .led-light.led-red{
+  background: var(--red-light1);
+  background-image: radial-gradient(var(--red-light2), var(--red-light1));
+  box-shadow: var(--led-aura) var(--red-light1);
+}
+.led-section .led-light.led-yellow{
+  background: var(--yellow-light1);
+  background-image: radial-gradient(var(--yellow-light2), var(--yellow-light1));
+  box-shadow: var(--led-aura) var(--yellow-light2);
+}
+.led-section .led-light.led-green{
+  background: var(--green-light1);
+  background-image: radial-gradient(var(--green-light1), var(--green-light2));
+  box-shadow: var(--led-aura) var(--green-light1);
+}
+.led-section .led-light.led-blue{
+  background: var(--blue-light1);
+  background-image: radial-gradient(var(--blue-light2), var(--blue-light1));
+  box-shadow: var(--led-aura) var(--blue-light1);
+}
+.led-section .led-light.led-off{
+  background: var(--off-light1);
+  background-image: radial-gradient(var(--off-light1), var(--off-light1), var(--off-light2), var(--off-light3));
+  border: none;
+  box-shadow: none;
+}
+.led-section .led-light-switch{
+  position: relative;
+  width: 80px;
+  height: 35px;
+  margin: auto;
+  cursor: pointer;
+}
+.led-section .led-light-switch input{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.led-section .led-light-switch .switch-slider{
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color1);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 15px;
+  transition: .4s;
+  overflow: hidden;
+  font-weight: bold;
+}
+.led-section .led-light-switch input:checked + .switch-slider{
+  background: var(--color2);
+}
+.led-section .led-light-switch .switch-slider:before{
+  position: absolute;
+  content: "";
+  width: 25px;
+  height: 25px;
+  top: 5px;
+  left: 50px;
+  background: var(--color2);
+  border-radius: 50%;
+  transition: 0.1s;
+}
+.led-section .led-light-switch input:checked + .switch-slider:before{
+  transform: translateX(-45px);
+  background: var(--color5);
+}
+.led-section .led-light-switch .switch-text{
+  position: absolute;
+  display: block;
+  line-height: 36px;
+  transition: 0.1s;
+  text-transform: capitalize;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.led-section .led-light-switch .switch-text.on{
+  left: 15px;
+  color: var(--color2);
+}
+.led-section .led-light-switch input:checked + .switch-slider .switch-text.on{
+  transform: translateX(-45px);
+}
+.led-section .led-light-switch .switch-text.off{
+  left: 80px;
+}
+.led-section .led-light-switch input:checked + .switch-slider .switch-text.off{
+  transform: translateX(-45px);
+}

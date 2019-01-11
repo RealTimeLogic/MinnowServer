@@ -1,0 +1,96 @@
+#calculator{
+  border: var(--borders);
+  border-bottom: none; /* This line might not be needed */
+  width: 400px;
+  max-width: 95vw;
+  height: 400px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  font-size: 25px;
+  text-align: center;
+  margin: var(--margins);
+}
+.calc-display{
+  background: var(--calc-color1);
+  grid-column: 1/5;
+  border-bottom: var(--borders);
+  max-width: 100%;
+  height: 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  text-align: right;
+}
+.calc-display .last-equation{
+  padding: 10px;
+  font-size: 15px;
+  letter-spacing: -1px;
+  font-weight: normal;
+  color: var(--calc-color2);
+}
+.calc-display .calc-area{
+  padding: 0 10px;
+  max-width: 100%;
+  overflow: hidden;
+}
+#calculator div div{
+  position: relative;
+  border-bottom: var(--borders);
+  border-right: var(--borders);
+  display: grid;
+  align-items: center;
+  cursor: pointer;
+  -moz-user-select: none;
+  user-select: none;
+  font-size: 25px;
+}
+#calculator .buttons .overlay{
+  position: absolute;
+  display: none;
+  background: var(--calc-color2);
+  width: 100%;
+  height: 100%;
+  transition: 0s;
+}
+#calculator .buttons div:hover .overlay{
+  display: block;
+  filter: opacity(0.3);
+}
+#calculator .buttons div:active .overlay{
+  background: var(--calc-color1);
+}
+.calc-num {
+  grid-column: span 3;
+  grid-row: span 4;
+  background: var(--num-buttons);
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+}
+.calc-num :last-child{
+  grid-column: span 3;
+  border-bottom: none;
+}
+.calc-math {
+  background: var(--math-buttons);
+  grid-column: 4/5;
+  grid-row: 2/7;
+  display: grid;
+  grid-template: repeat(5, 1fr) / 1fr;
+}
+#calculator .calc-math div{
+  border-right: none;
+}
+.calc-math :last-child {
+  border: none;
+}
+.calc-func {
+  background: var(--func-buttons);
+  grid-column: span 3;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.calc-func :first-child{
+  grid-column: span 2;
+}

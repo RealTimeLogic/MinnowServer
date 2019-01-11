@@ -1,0 +1,102 @@
+/* ----------
+CSS-GRID-BASED THEME AND DESIGN BY STEPHEN KISER, AKA STEVAKOBOY
+
+  --FREELANCER: https://www.freelancer.com/u/Stevakoboy
+
+  --INSTAGRAM: https://www.instagram.com/stevakoboy/
+
+  --TWITTER: https://twitter.com/Stevakoboy
+
+  --YOUTUBE: https://www.youtube.com/channel/UCqQEPkVuNsmq14O4e-fy2tA
+---------- */
+
+body *{ /*remove outlines from most items, such as links*/
+  outline: none;
+}
+
+:root{
+
+  /* main theme measurements */
+    --borders: 1px solid black;
+    --border-radius: 8px;
+    --margins: 10px auto;
+    --paddings: 5px;
+    --min-mobile-width: 320px;
+    --max-mobile-width: 1039px;
+    --desktop-width: 1040px;
+    --max-width: 95vw;
+  /* end main theme measurements */
+
+  /* main theme colors */
+    --color1: #4365ff;
+    --color2: #90a3ff;
+    --color3: #48527f;
+    --color4: #3650cc;
+    --color5: #22327f;
+  /* end main theme colors */
+
+  /* main theme text settings */
+    --font-family1: fantasy;
+    --text-color1: #000000;
+  /* end main theme text settings */
+
+  /* menu theme settings */
+    --menu-height: 60px;
+  /* end menu theme settings */
+
+  /* calculator colors */
+    --calc-color1: #ffffff;
+    --calc-color2: #808080;
+    --math-buttons: #ffd700;
+    --num-buttons: #f8f8ff;
+    --func-buttons: #dcdcdc;
+    --hover: #000000;
+    --click: #000000;
+  /* end calculator colors */
+
+  /* LED-lights */
+
+    /* led aura */
+      --led-aura: 0 0 20px 6px;
+    /* end led aura */
+
+    /* red */
+      --red-light1: #ff0000;
+      --red-light2: #ff8c00;
+    /* end red */
+
+    /* yellow */
+      --yellow-light1: #ffd700;
+      --yellow-light2: #ffa500;
+    /* end yellow */
+
+    /* green */
+      --green-light1: #00ff00;
+      --green-light2: #90ee90;
+    /* end green */
+
+    /* blue */
+      --blue-light1: #00ffff;
+      --blue-light2: #87ceeb;
+    /* end blue */
+
+    /* off */
+      --off-light1: #c0c0c0;
+      --off-light2: #808080;
+      --off-light3: #000000;
+    /* end off */
+
+    /* switch */
+      --switch-color1: #ffffff;
+      --switch-color2: #c0c0c0;
+      --switch-color3: #000000;
+      --switch-color4: #808080;
+    /* end switch */
+
+  /* end LED-lights */
+
+  /* form colors */
+    --error-color: #fc94a6;
+    --input-color: #efefef;
+  /* end form colors */
+}

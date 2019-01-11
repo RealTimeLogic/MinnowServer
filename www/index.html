@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minnow Server - Reference Platform</title>
+<link rel="icon" href="MinnowServer.ico" type="image/x-icon" />
+
+<!-- get css files -->
+<link rel="stylesheet" type="text/css" href="css/theme.css" />
+<link rel="stylesheet" type="text/css" href="css/grid.css" />
+<link rel="stylesheet" type="text/css" href="css/modal.css" />
+<link rel="stylesheet" type="text/css" href="css/menu.css" />
+<link rel="stylesheet" type="text/css" href="css/calculator.css" />
+<link rel="stylesheet" type="text/css" href="css/led.css" />
+<link rel="stylesheet" type="text/css" href="css/data.css" />
+<link rel="stylesheet" type="text/css" href="css/upload.css" />
+<link rel="stylesheet" type="text/css" href="css/credentials.css" />
+
+<!-- get cash, OR OTHER jquery alternative -->
+<script src="plugins/cash.min.js"></script>
+
+<!-- get SHA1 lib -->
+<script src="plugins/sha1.js"></script>
+
+<!-- get js for thermostat gauge -->
+<script src="plugins/gauge.min.js"></script>
+
+<!-- get LED management code -->
+<script src="js/LED.js"></script>
+
+<!-- get WebSocket and SMQ connection Manager -->
+<script src="js/connection.js"></script>
+
+<!-- get js for ui interactions -->
+<script src="js/interactions.js"></script>
+
+</head>
+<body>
+
+  <!-- MENU MARKUP -->
+    <div id="menu">
+
+      <!-- MENU LOGO -->
+        <a title="Powered by the awesome Minnow Server!" href="https://realtimelogic.com/products/sharkssl/minnow-server/" class="menu-logo">
+          <img src="MinnowServer.png" />
+        </a>
+      <!-- END MENU LOGO -->
+
+      <!-- DESKTOP LINKS -->
+        <div id="desktop-menu" class="links-area desk">
+          <a PageId="calculator" href="#" class="selected">Calculator</a>
+          <a PageId="led-panel" href="#">LEDs</a>
+          <a PageId="thermostat" href="#">Realtime Data</a>
+          <a PageId="upload-container" href="#">Firmware upload</a>
+          <a PageId="credentials-container" href="#">Credentials</a>
+        </div>
+      <!-- END DESKTOP LINKS -->
+
+      <!-- MOBILE LINKS -->
+        <div class="drop-area" id="drop-button">
+          <div id="mobile-menu" class="drop-menu">
+          <a PageId="calculator" href="#" class="selected">Calculator</a>
+          <a PageId="led-panel" href="#">LEDs</a>
+          <a PageId="thermostat" href="#">Realtime Data</a>
+          <a PageId="upload-container" href="#">Firmware upload</a>
+          <a PageId="credentials-container" href="#">Credentials</a>
+          </div>
+        </div>
+      <!-- END MOBILE LINKS -->
+
+    </div>
+  <!-- END MENU MARKUP -->
+
+
+<!-- CONTENT GRID-AREA -->
+<div class="content">
+ <div id="pages"> <!-- Used by JS menu management code -->
+  <!-- CALCULATOR MARKUP -->
+    <div id="calculator">
+
+      <!-- CALCULATOR SCREEN-AREA -->
+        <div class="calc-display">
+          <span class="last-equation"></span> <!-- last calculation goes here. EG: 4 + 4 x 4 -->
+          <span class="calc-area">0</span> <!-- result/answer goes here. EG: 20 -->
+        </div>
+      <!-- END CALCULATOR SCREEN-AREA -->
+
+      <!-- CALCULATOR NUMBER PAD -->
+        <div class="calc-num buttons">
+          <div data-value="1">1<span class="overlay"></span></div>
+          <div data-value="2">2<span class="overlay"></span></div>
+          <div data-value="3">3<span class="overlay"></span></div>
+          <div data-value="4">4<span class="overlay"></span></div>
+          <div data-value="5">5<span class="overlay"></span></div>
+          <div data-value="6">6<span class="overlay"></span></div>
+          <div data-value="7">7<span class="overlay"></span></div>
+          <div data-value="8">8<span class="overlay"></span></div>
+          <div data-value="9">9<span class="overlay"></span></div>
+          <div data-value="0">0<span class="overlay"></span></div>
+        </div>
+      <!-- END CALCULATOR NUMBER PAD -->
+
+      <!-- CALCULATOR MATH BUTTONS -->
+        <div class="calc-math buttons math-funcs">
+          <div data-value="/" data-display="÷">&divide;<span class="overlay"></span></div>
+          <div data-value="*" data-display="×">&times;<span class="overlay"></span></div>
+          <div data-value="-" data-display="−">&minus;<span class="overlay"></span></div>
+          <div data-value="+">&plus;<span class="overlay"></span></div>
+          <div data-value="=" data-submit="true">&equals;<span class="overlay"></span></div>
+        </div>
+      <!-- END CALCULATOR MATH BUTTONS -->
+
+      <!-- CALCULATOR CLEAR AND OTHER BUTTONS -->
+        <div class="calc-func buttons math-funcs">
+          <div data-value="C">C<span class="overlay"></span></div>
+          <div data-value=".">.<span class="overlay"></span></div>
+        </div>
+      <!-- END CALCULATOR CLEAR AND OTHER BUTTONS -->
+
+    </div>
+  <!-- END CALCULATOR MARKUP -->
+
+  <!-- LED MARKUP -->
+    <div id="led-panel">
+    </div>
+
+
+  <!-- END LED MARKUP -->
+
+  <!-- DATA MARKUP -->
+    <div id="thermostat" class="thermostat">
+      <canvas id="ThermCanvas"></canvas>
+    </div>
+  <!-- END DATA MARKUP -->
+
+  <!-- UPLOAD MARKUP -->
+    <div id="upload-container">
+      <span id="upload-overlay" class="overlay"></span>
+      <span id="upload-info"></span>
+      <div id="upload-meter">
+        <h1>Uploading</h1>
+        <div id="progress-bar">
+          <div id="progress-slider"></div>
+        </div>
+        <div id="upload-percentage"><h2>0%</h2></div>
+      </div>
+    </div>
+  <!-- END UPLOAD MARKUP -->
+
+  <!-- CREDENTIALS MARKUP -->
+    <div id="credentials-container">
+      <div>
+        <h1>Set New Credentials</h1>
+        <div class="credentials-form">
+          <input id="curUname" type="text" placeholder="Current Username"/>
+          <input id="curPwd" type="password" placeholder="Current Password"/>
+          <input id="newUname" type="text" placeholder="New Username"/>
+          <input id="newPwd" type="password" placeholder="New Password"/>
+          <button id="credentials-new" type="button">Change</button>
+          <span class="credentials-error"></span>
+        </div>
+      </div>
+      <div>
+        <h1>Credentials Saved</h1>
+        <div class="credentials-form">
+          <button id="credentials-saved" type="button">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END CREDENTIALS MARKUP -->
+
+  <!-- MODAL MARKUP -->
+    <div id="modal" class="open">
+
+      <!-- GENERAL INFO MODAL DIALOG -->
+        <div id="InfoDialog" class="modal-dialog">
+          <div class="modal-content">
+            <span class="modal-panel"></span>
+          </div>
+        </div>
+      <!-- GENERAL INFO MODAL DIALOG -->
+
+      <!-- LOGIN MODAL -->
+        <div id="LoginDialog" class="modal-dialog">
+          <div class="modal-content">
+            <div class="login-container">
+
+              <!-- FORM HEADER --> <h1>Login</h1> <!-- END FORM HEADER -->
+
+              <div class="login-form">
+                <!-- DEVICE NAME -->
+                <div id="device-name-area">
+                  <div id="device-name"></div>
+                </div> <!-- END DEVICE NAME -->
+                <!-- INPUT FIELDS -->
+                  <input id="LoginUname" type="text" placeholder="Username">
+                  <input id="LoginPwd" type="password" placeholder="Password">
+                <!-- END INPUT FIELDS -->
+                <!-- SUBMIT BUTTON -->
+                <button type="button">Login</button> <!-- END SUBMIT BUTTON -->
+                <!-- LOGIN ERROR MESSAGE -->
+                  <span class="login-error"></span>
+                <!-- END LOGIN ERROR MESSAGE -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      <!-- END LOGIN MODAL -->
+
+    </div>
+  <!-- END MODAL MARKUP -->
+
+</div>
+<!-- END CONTENT GRID-AREA -->
+
+</body>
+</html>

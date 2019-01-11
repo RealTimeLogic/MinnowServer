@@ -1,0 +1,46 @@
+#upload-container{
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin: var(--margins);
+  max-width: var(--max-width);
+  max-height: 95%;
+  width: 600px;
+  height: 350px;
+  background: var(--color5);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  text-align: center;
+}
+.overlay{
+  position: absolute;
+  display: block;
+  border-radius: var(--border-radius);
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  background: var(--color1);
+  filter: opacity(0.1);
+  transition: 0.4s;
+}
+.overlay.drag-over{
+  filter: opacity(0.3);
+  border: 4px dotted black;
+}
+#upload-meter{
+  width: 100%;
+  display: none;
+}
+#progress-bar{
+  width: 85%;
+  height: 25px;
+  border: 2px solid var(--color1);
+  border-radius: var(--border-radius);
+  margin: auto;
+}
+#progress-slider{
+  width: 0%;
+  height: 100%;
+  background: var(--color2);
+  border-radius: var(--border-radius);
+}
