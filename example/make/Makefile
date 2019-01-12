@@ -64,6 +64,7 @@ SOURCE = AllocatorIntf.c \
 
 OBJ := $(SOURCE:%.c=$(ODIR)/%$(O))
 
+.PHONY: packwww clean help
 
 minnow: $(ODIR) $(OBJ)
 	$(CC) $(LNKOFT)$@ $(OBJ)
@@ -78,3 +79,8 @@ $(ODIR):
 
 clean:
 	rm -rf minnow obj
+
+help:
+	@echo "make minnow  -> Build the Minnow Server reference example"
+	@echo "make packwww -> Pack the www directory and create index.c"
+	@echo "make clean   -> Remove object files and executable"
