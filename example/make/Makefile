@@ -68,6 +68,11 @@ OBJ := $(SOURCE:%.c=$(ODIR)/%$(O))
 minnow: $(ODIR) $(OBJ)
 	$(CC) $(LNKOFT)$@ $(OBJ)
 
+packwww: $(ODIR)
+	cd ../..&&zip -r example/make/obj/www.zip www
+	cd obj&&curl -F download=true -F jsc=SIMPLE -F zip=true -F upload=@www.zip https://realtimelogic.info/htmla/ --output index.c
+	mv obj/index.c ../src/
+
 $(ODIR):
 	mkdir $(ODIR)
 

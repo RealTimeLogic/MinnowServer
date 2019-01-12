@@ -244,7 +244,9 @@ const ws={status:()=>{return "closed"}};
 
     window.addEventListener('load', function() {
         sock_sendBin = (data)=> { sock.send(data); };
-        if( ! wsurl(true) && SMQ ) { // Use SMQ if not loaded from file and SMQ is included
+        const hasSMQ = () => { try {return SMQ;} catch(e) {return null;} };
+         // Use SMQ if not loaded from file and SMQ is included
+        if( ! wsurl(true) && hasSMQ() ) {
             lg("SMQ URL:"+SMQ.wsURL("/minnow-smq.lsp")+window.location.search)
             let devTid
             const smq = SMQ.Client(SMQ.wsURL("/minnow-smq.lsp")+window.location.search);
