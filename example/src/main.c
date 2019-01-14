@@ -1342,6 +1342,9 @@ openServerSock(SOCKET* sock)
   The main function initiates everything and opens a socket
   connection. When in secure mode (TLS), create a SharkSsl object and
   one SharkSslCon (connection) object.
+
+  ctx: Bare Metal only (remove for other platforms), see:
+  https://realtimelogic.com/ba/doc/en/C/shark/group__BareMetal.html
  */
 void
 mainTask(SeCtx* ctx)
