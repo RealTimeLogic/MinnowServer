@@ -298,17 +298,38 @@ saveFirmware(U8* data, int len, BaBool open, BaBool eof)
 
 
 #ifndef NO_MAIN
+
+#ifndef _WIN32
+#include <signal.h>
+static void
+ignoreSignal(int sig)
+{
+   struct sigaction sa;
+   sa.sa_handler = SIG_IGN;
+   sigemptyset(&sa.sa_mask);
+   sa.sa_flags = 0;
+   sigaction(sig, &sa, NULL);
+}
+#endif
+
 int
 main()
 {
    xprintf(("%s",
             "Minnow Server and IoT example.\n"
-            "Copyright (c) 2018 Real Time Logic.\n"
+            "Copyright (c) 2019 Real Time Logic.\n"
             "\n"));
 #ifdef _WIN32
    /* Windows specific: Start winsock library */
    { WSADATA wsaData; WSAStartup(MAKEWORD(1,1), &wsaData); }
 #else
+   /* Assuming POSIX (Linux). Prevent signals from terminating program */
+    ignoreSignal(SIGHUP);
+    ignoreSignal(SIGTTOU);
+    ignoreSignal(SIGTTIN);
+    ignoreSignal(SIGTSTP);
+    ignoreSignal(SIGPIPE);
+    ignoreSignal(SIGXFSZ);
    setConioTerminalMode();
 #endif
    mainTask(0);

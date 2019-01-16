@@ -6,6 +6,8 @@ The following details the communication API, the security concept used by the re
 
 A message is an array of two elements, the message-name and the message body. The message body may be a primitive type, an object or array.
 
+For an introduction to the JSON Communication concept, see the [Minnow Server tutorial: How to Communicate Between the Browser and Device using WebSockets](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server#communicate)
+
 * **Message devname** sent from device to browser after connection establishment: ["devname",["the-device-name"]]
 * **Message nonce** is sent from device to browser just after sending **devname** or each time the user provides wrong credentials: ["nonce"," b64-encoded-12-byte-nonce "]. See authentication and password management below for more information on how the nonce is used.
 * **Message auth** is sent from browser to client: ["auth", {name:"string",hash:"string"}], where the hash is a 40 byte long password hash in hex form (a 20 byte SHA-1 hash)
@@ -33,6 +35,8 @@ In addition to the JSON text frames, binary frames are used when sending binary 
 ## Authentication and Password Management
 
 The example includes logic that makes it more difficult for an attacker to eavesdrop and extract the credentials from the device. We use [SHA-1](https://en.wikipedia.org/wiki/SHA-1) hashing for making it difficult to both extract the credentials from the device and eavesdrop on the credentials.
+
+For an introduction to the secure authentication concept, see the [Minnow Server tutorial: How to Authenticate the User](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server#authenticate)
 
 There are several security aspects one must consider when dealing with credentials, such as:
 

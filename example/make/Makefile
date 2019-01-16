@@ -66,12 +66,22 @@ OBJ := $(SOURCE:%.c=$(ODIR)/%$(O))
 
 .PHONY: packwww clean help
 
+help:
+	@echo "make minnow  -> Build the Minnow Server reference example"
+	@echo "make packwww -> Pack the www directory and replace ../src/index.c"
+	@echo "make clean   -> Remove object files and executable"
+	@echo "Build with debug information: make minnow build=debug"
+
+
 minnow: $(ODIR) $(OBJ)
 	$(CC) $(LNKOFT)$@ $(OBJ)
 
 packwww: $(ODIR)
+	@echo "Zipping the 'www' directory...."
 	cd ../..&&zip -r example/make/obj/www.zip www
+	@echo "Uploading the zipped 'www' directory to the HTML amalgamator..."
 	cd obj&&curl -F download=true -F jsc=SIMPLE -F zip=true -F upload=@www.zip https://realtimelogic.info/htmla/ --output index.c
+	@echo "Replacing ../src/index.c with the new amalgamated file"
 	mv obj/index.c ../src/
 
 $(ODIR):
@@ -79,8 +89,3 @@ $(ODIR):
 
 clean:
 	rm -rf minnow obj
-
-help:
-	@echo "make minnow  -> Build the Minnow Server reference example"
-	@echo "make packwww -> Pack the www directory and create index.c"
-	@echo "make clean   -> Remove object files and executable"

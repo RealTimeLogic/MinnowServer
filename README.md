@@ -41,11 +41,13 @@ The optional IoT solution enables a device installed on a private network to be 
 The Minnow Server and the reference platform can be compiled for any microcontroller. The Minnow Server includes porting layers for many RTOS's and TCP/IP stacks. However, a few code sections in the example code are designed to run on a non RTOS environment and must be modified if you plan on compiling the example "as is" for a microcontroller. The purpose with the reference platform is educational, and compiling and running the code on a host computer is the first step. You may compile the code on Windows using the included Visual C++ project file or on Linux/Mac using the included makefile.
 
 ### Prerequisites
-Perform the following commands on the command line to clone the Minnow Server and the required libraries.
 
-git clone https://github.com/RealTimeLogic/MinnowServer.git  
-git clone https://github.com/RealTimeLogic/JSON.git  
-git clone https://github.com/RealTimeLogic/SMQ.git
+1. Carefully read the [Minnow Server SPA tutorial](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server), which provides details on the complete SPA development process.
+2. Perform the following commands on the command line to clone the Minnow Server and the required libraries:
+
+ git clone https://github.com/RealTimeLogic/MinnowServer.git  
+ git clone https://github.com/RealTimeLogic/JSON.git  
+ git clone https://github.com/RealTimeLogic/SMQ.git
 
 The JSON and SMQ libraries are used by the Minnow Server reference example. The SMQ stack is needed even if you do not plan on IoT enabling the reference platform since the Minnow Server uses the SMQ TCP/IP porting layer.
 
