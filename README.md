@@ -40,6 +40,8 @@ The optional IoT solution enables a device installed on a private network to be 
 
 The Minnow Server and the reference platform can be compiled for any microcontroller. The Minnow Server includes porting layers for many RTOS's and TCP/IP stacks. However, a few code sections in the example code are designed to run on a non RTOS environment and must be modified if you plan on compiling the example "as is" for a microcontroller. The purpose with the reference platform is educational, and compiling and running the code on a host computer is the first step. You may compile the code on Windows using the included Visual C++ project file or on Linux/Mac using the included makefile.
 
+In addition to the host build environments, we provide a ready to use build environment for [FreeRTOS/lwIP ESP8266](doc/arch/).
+
 ### Prerequisites
 
 1. Carefully read the [Minnow Server SPA tutorial](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server), which provides details on the complete SPA development process.

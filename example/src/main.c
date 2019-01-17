@@ -338,6 +338,12 @@ main()
 }
 #endif
 
+#else /* HOST_PLATFORM */
+/* target env */
+extern int setcredentials(const char* username, const char* password);
+extern int checkCredentials(const char* name, U8 nonce[12], const U8 hash[20]);
+extern int saveFirmware(U8* data, int len, BaBool open, BaBool eof);
+/* See ledctrl.h for additional required interfaces. */
 #endif /* HOST_PLATFORM */
 
 
