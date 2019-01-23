@@ -23,14 +23,16 @@ The Minnow Server includes a reference platform that can be used as a base for d
 
 The Minnow Server Reference Platform is a fully functional example that follows the design guidelines outlined in the tutorial [Creating Single-Page Apps with the Minnow Server](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server). The following Figure 1 shows the HTML5 LED web page provided by this example. The example is designed such that one can use it as a base for designing a professional web based device management application.
 
-TBD
+![Minnow Server Example](https://dzone.com/storage/temp/11061598-figure3.png "Minnow Server Example")
 
 
 **Figure 1: The Single Page HTML5 Based Web Application**
 
+Figure 1 is from the DZone article  [IoT enabled Embedded Web Server Reference Example]( https://dzone.com/articles/iot-enabled-embedded-web-server-reference-example), which provides an  introduction to how the reference example works.
+
 The example provides a direct WebSocket server API designed for local Intranet use and an optional IoT connection that enables the WebSocket server running on a private network and protected by a firewall to also be accessible from the Internet. The following figure shows how a local user and how an external user can access the same device.
 
-!["Local or External Access](https://raw.githubusercontent.com/RealTimeLogic/MinnowServer/master/doc/img/local-and-remote-conn.jpg "Local or External Access")
+![Local or External Access](https://raw.githubusercontent.com/RealTimeLogic/MinnowServer/master/doc/img/local-and-remote-conn.jpg "Local or External Access")
 
 **Figure 2: Access reference platform locally or via the Internet**
 
