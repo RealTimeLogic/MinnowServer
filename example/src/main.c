@@ -506,7 +506,7 @@ SendData_constructor(SendData* o, ConnData* cd)
       BufPrint_constructor(&o->super, cd, SendData_smqSendJSON);
 #ifdef MS_SEC
       /* Use the SharkSSL buffer and the zero copy API */
-      BufPrint_setBuf(&o->super, SharkMQ_getSendBufPtr(&cd->u.s.smq),
+      BufPrint_setBuf(&o->super, (char*)SharkMQ_getSendBufPtr(&cd->u.s.smq),
                       SharkMQ_getSendBufSize(&cd->u.s.smq));
 #else
       /* Minnow Server is inactive when in IoT mode, thus we can use

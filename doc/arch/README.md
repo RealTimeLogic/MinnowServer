@@ -18,29 +18,30 @@ The following instructions are for building the Minnow Server example using the 
 4. Run the following Linux commands in the WebShell (the sudo password is 'SharkSSL'):
 
 ```bash
-sudo apt update  
-# We need git and curl  
-sudo apt install git curl   
-# Navigate to examples directory  
-cd ESP/esp-open-rtos/examples/  
-#Put the MinnowServer, the example, and JSON lib in the ms directory.  
-mkdir ms  
-cd ms  
-# Note that we do not need SMQ since the socket library and the secure SMQ are included in SharkSSL.  
-git clone https://github.com/RealTimeLogic/MinnowServer.git  
-git clone https://github.com/RealTimeLogic/JSON.git  
-# Navigate to the architecture directory  
-cd MinnowServer/doc/arch/  
-# Copy the two required files. All other files are included in the ESP8266 SharkSSL delivery  
-cp Makefile MinnowHwIntf.c ../../../  
-# Navigate to the 'host build' make directory  
-cd ../../example/make/  
-# Amalgamate and compress www -> creates index.c  
-make packwww  
-# cd to the root of the example  
-cd ../../../  
-# Build example and upload to the connected ESP8266  
-make test -j4 FLASH_MODE=dio ESPPORT=/dev/ttyUSB0  
+sudo apt update
+# We need git and curl
+sudo apt install git curl 
+# Navigate to examples directory
+cd ESP/esp-open-rtos/examples/
+#Put the MinnowServer, the example, and JSON lib in the ms directory.
+mkdir ms
+cd ms
+# Note that we do not need JSON and SMQ since these two componets are included in the SharkSSL IDE.
+git clone https://github.com/RealTimeLogic/MinnowServer.git
+# Navigate to the architecture directory
+cd MinnowServer/doc/arch/
+# Copy the two required files. All other files are included in the ESP8266 SharkSSL delivery
+cp Makefile MinnowHwIntf.c ../../../
+# The following enables compiling from withing the web IDE
+chmod +x ms.sh; mv ms.sh ~/ESP/
+# Navigate to the 'host build' make directory
+cd ../../example/make/
+# Amalgamate and compress www -> creates index.c
+make packwww
+# cd to the root of the example
+cd ~/ESP/esp-open-rtos/examples/ms
+# Build example and upload to the connected ESP8266
+make test FLASH_MODE=dio ESPPORT=/dev/ttyUSB0
 ```
 
 If the build and upload process are successful, you should see the ESP8266 connecting to your WiFi and then you should see the text:
