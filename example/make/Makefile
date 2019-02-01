@@ -22,11 +22,15 @@ else
 CFLAGS += -Os -O3
 endif
 
-#IoT enable the example. See documention for details.
-#CFLAGS += -DUSE_SMQ
+# Enable IoT mode and connect to the test server minnow.ml
+# See documention for details. 
+#CFLAGS += -DUSE_SMQ '-DSMQ_DOMAIN="minnow.ml"'
+
 
 #Prints info in console
 CFLAGS += -DXPRINTF
+
+
 
 ifndef PLAT
 PLAT=Posix
