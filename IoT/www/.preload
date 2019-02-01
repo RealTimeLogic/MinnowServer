@@ -37,10 +37,13 @@ https://realtimelogic.com/ba/doc/?url=SMQ.html#SendersAddress
 --]]
 
 local smq -- The SMQ broker, created below
-local devices={} -- All connected devices
-local browsers={} -- All connected browsers
+local devices={} -- All connected devices, where key is device-tid and val is (Ref-Dev)
+local browsers={} -- All connected browsers, where key is browser-tid and val is device-tid
+local numdevs=0 -- Number of connected devices
 
-function getdevs() return devices end -- Used by LSP code
+ -- Used by LSP code
+function getdevs() return devices end
+function getnumdevs() return numdevs end
 
 -- SMQ broker authenticate callback.
 local function authenticate(credentials, info)
@@ -52,11 +55,12 @@ end
 local function onconnect(tid, info, peer)
    if info.data.device then -- URL includes ?device= -- i.e. a device is connecting
       -- Create a new object and store object in 'devices', where device tid is the key
-      devices[tid]={
+      devices[tid]={ -- Ref-Dev
          peer=info.sock:peername(),
          info=info.info,
          messages={}, -- Store initial device messages here
       }
+      numdevs = numdevs+1
    else -- not a device. Assume this is a browser.
       local devTid=0 -- Set to invalid tid.
       -- Check if the URL includes ?connect=number
@@ -89,12 +93,14 @@ function onclose(tid)
    if devTid then -- Yes, a browser.
       browsers[tid]=nil
       devices[devTid]=nil
+      numdevs = numdevs-1
       smq:shutdown("Browser closed connection", devTid) -- Send a close message to device.
       -- The device will now revert to WebSocket mode.
-   else -- not a browser
+   else -- not a browser: must be device
       local dev=devices[tid] -- Check if it is a registered device that closed the connection.
       if dev then -- Yes, a device.
          devices[tid]=nil
+         numdevs = numdevs-1
          if dev.browserTid then -- Is a browser connected to the device
             browsers[dev.browserTid]=nil
             smq:shutdown("Device closed connection", dev.browserTid) -- Send close message to browser

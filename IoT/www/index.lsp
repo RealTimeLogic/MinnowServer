@@ -1,3 +1,18 @@
+<?lsp
+
+--[[
+if not request:issecure() then
+   local host = request:header"host"
+   if not host then response:senderror(404) response:abort() end
+   response:sendredirect("https://"..host..request:uri())
+end
+--]]
+
+if request:header"x-requested-with" then -- if a $.getJSON() call, see JS below
+   response:json{numdevs=app.getnumdevs()}
+end
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +24,33 @@
 <link rel="stylesheet" type="text/css" href="css/grid.css" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" />
 <link rel="stylesheet" type="text/css" href="css/credentials.css" />
+<style>
+#credentials-container li {
+        color:white;
+}
+
+#credentials-container li a {
+        color:white;
+}
+
+#credentials-container li span {
+    float:right;
+    margin-right:1em;
+}
+
+</style>
+<script src="rtl/jquery.js"></script>
+<script>
+   $(function() {
+       const numdevs = <?lsp=app.getnumdevs()?>;
+       setInterval(()=>{
+           $.getJSON(location.href, (data) => {
+               if(data.numdevs != numdevs)
+                   location.reload();
+           });
+       }, 1500);
+   });
+</script>
 </head>
 <body>
 
@@ -54,8 +96,8 @@ if next(devs) then
    response:write'<h1>Connected Devices</h1><ul>'
    for tid, dev in pairs(devs) do
       local li = dev.usedby and
-         string.format('%s : %s, locked by: %s',dev.info, rmIP6(dev.peer),rmIP6(dev.usedby)) or
-         string.format('<a href="./?connect=%s">%s</a> IP: %s',tid, dev.info, rmIP6(dev.peer))
+         string.format('%s : %s <span>locked by: %s</span>',dev.info, rmIP6(dev.peer),rmIP6(dev.usedby)) or
+         string.format('<a href="./?connect=%s">%s</a> <span>IP: %s</span>',tid, dev.info, rmIP6(dev.peer))
       response:write('<li>',li,'</li>')
    end
    response:write'</ul>'
