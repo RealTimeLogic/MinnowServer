@@ -101,7 +101,9 @@ static AllocatorIntf da; /* JVal String Allocator */
 #ifdef USE_SMQ
 /* The domain name (or IP address) for the (online) SMQ broker.
  */
+#ifndef SMQ_DOMAIN
 #define SMQ_DOMAIN "MakoServer"
+#endif
 #ifdef MS_SEC
 #define SMQ_PROTOCOL "https://"
 #else
@@ -1294,7 +1296,7 @@ RecData_connectSMQ(RecData* rd, ConnData* cd, SharkSsl* sharkSSL)
    if(SharkMQ_connect(&cd->u.s.smq,
                       smqUniqueId, smqUniqueIdLen,
                       0, 0, /* credentials */
-                      getDevName(), strlen(getDevName())))
+                      getDevName(), strlen(getDevName()),1420))
    {
       xprintf(("SMQ connect failed, status: %d\n", cd->u.s.smq.status));
       /* Assert: program err, more mem needed. */
@@ -1309,7 +1311,7 @@ RecData_connectSMQ(RecData* rd, ConnData* cd, SharkSsl* sharkSSL)
    cd->u.s.browserTID = 1;
    if(sendDeviceName(cd) || RecData_sendNonce(rd, cd))
       return -1;
-   cd->u.s.smq.timeout = 0; /* poll mode */
+   cd->u.s.smq.timeout = 1; /* poll mode */
    return 0;
 }
 

@@ -10,4 +10,8 @@ PROGRAM_EXTRA_SRC_FILES = \
 PROGRAM_CFLAGS += -DXPRINTF=1 -DB_LITTLE_ENDIAN
 PROGRAM_CFLAGS += -Wall
 
+#Enable IoT and connect to minnow.ml
+#PROGRAM_CFLAGS += -DUSE_SMQ '-DSMQ_DOMAIN="minnow.ml"'
+
+
 include ../../common.mk
