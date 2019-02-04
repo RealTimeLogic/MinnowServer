@@ -25,23 +25,39 @@ end
 <link rel="stylesheet" type="text/css" href="css/menu.css" />
 <link rel="stylesheet" type="text/css" href="css/credentials.css" />
 <style>
-#credentials-container li {
-        color:white;
+#credentials-container ul {
+  list-style-type: none;
+  margin: 10px;
+  padding: 0;
+}
+#credentials-container li,#credentials-container li a {
+  color:white;
 }
 
-#credentials-container li a {
-        color:white;
+#credentials-container li {
+   position: relative;
+   margin: 0 0 8px 0;
 }
 
 #credentials-container li span {
-    float:right;
-    margin-right:1em;
+   position:absolute;
+   top:-30px;
+   left:200px;
+   display: none;
+    background: var(--color1);
+    border: var(--borders);
+    padding:1em;
+    border-radius: var(--border-radius);
 }
-
 </style>
 <script src="rtl/jquery.js"></script>
 <script>
    $(function() {
+       $("#credentials-container li").hover(
+           function() { $("span",this).show(); },
+           function() { $("span",this).hide(); }
+       );
+
        const numdevs = <?lsp=app.getnumdevs()?>;
        setInterval(()=>{
            $.getJSON(location.href, (data) => {
@@ -97,7 +113,7 @@ if next(devs) then
    for tid, dev in pairs(devs) do
       local li = dev.usedby and
          string.format('%s : %s <span>locked by: %s</span>',dev.info, rmIP6(dev.peer),rmIP6(dev.usedby)) or
-         string.format('<a href="./?connect=%s">%s</a> <span>IP: %s</span>',tid, dev.info, rmIP6(dev.peer))
+         string.format('<a href="./?connect=%s">%s</a> : %s',tid, dev.info, rmIP6(dev.peer))
       response:write('<li>',li,'</li>')
    end
    response:write'</ul>'
