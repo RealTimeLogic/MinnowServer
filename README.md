@@ -44,7 +44,7 @@ The Minnow Server and the reference platform can be compiled for any microcontro
 
 In addition to the host build environments, we provide a ready to use build environment for [FreeRTOS/lwIP ESP8266](doc/arch/). The following video shows how to compile and upload the code to the ESP8266. The video also shows how to IoT enable the Minnow Server example.
 
-[![ESP8266 Tutorial](http://i3.ytimg.com/vi/G0syP7E7FIU/hqdefault.jpg)](https://youtu.be/G0syP7E7FIU)
+[![ESP8266 Tutorial](https://i3.ytimg.com/vi/G0syP7E7FIU/hqdefault.jpg)](https://youtu.be/G0syP7E7FIU)
 
 ### Prerequisites
 
