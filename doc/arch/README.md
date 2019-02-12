@@ -49,3 +49,5 @@ You may then use a browser and navigate to https://IP-ADDRESS-OF-VM. Note that y
 1. Add the following entry in your computer's hosts file: IP-ADDRESS-OF-VM	device
 2. Install [RTL's root certificate](https://realtimelogic.com/downloads/root-certificate/).
 3. Navigate to https://device
+
+See the embedded.com article [How to install a secure embedded Web server on ESP8266](https://www.embedded.com/design/prototyping-and-development/4461577/How-to-install-a-secure-embedded-web-server-on-a--3-WiFi-device) for detailed instructions.

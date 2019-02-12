@@ -42,7 +42,7 @@ The optional IoT solution enables a device installed on a private network to be 
 
 The Minnow Server and the reference platform can be compiled for any microcontroller. The Minnow Server includes porting layers for many RTOS's and TCP/IP stacks. However, a few code sections in the example code are designed to run on a non RTOS environment and must be modified if you plan on compiling the example "as is" for a microcontroller. The purpose with the reference platform is educational, and compiling and running the code on a host computer is the first step. You may compile the code on Windows using the included Visual C++ project file or on Linux/Mac using the included makefile.
 
-In addition to the host build environments, we provide a ready to use build environment for [FreeRTOS/lwIP ESP8266](doc/arch/). The following video shows how to compile and upload the code to the ESP8266. The video also shows how to IoT enable the Minnow Server example.
+In addition to the host build environments, we provide a ready to use build environment for [FreeRTOS/lwIP ESP8266](doc/arch/). The following video shows how to compile and upload the code to the ESP8266. The video also shows how to IoT enable the Minnow Server example. See the embedded.com article [How to install a secure embedded Web server on ESP8266](https://www.embedded.com/design/prototyping-and-development/4461577/How-to-install-a-secure-embedded-web-server-on-a--3-WiFi-device) for detailed instructions.
 
 [![ESP8266 Tutorial](https://img.youtube.com/vi/mAY2CpjYRLU/0.jpg)](https://youtu.be/mAY2CpjYRLU)
 
