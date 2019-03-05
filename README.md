@@ -21,7 +21,7 @@ The Minnow Server includes porting layers for the following platforms:
 
 The Minnow Server includes a reference platform that can be used as a base for designing advanced web based device management applications.
 
-The Minnow Server Reference Platform is a fully functional example that follows the design guidelines outlined in the tutorial [Creating Single-Page Apps with the Minnow Server](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server). The following Figure 1 shows the HTML5 LED web page provided by this example. The example is designed such that one can use it as a base for designing a professional web based device management application.
+The Minnow Server Reference Platform is a fully functional example that follows the design guidelines outlined in the tutorial [Creating Single-Page Apps with the Minnow Server](https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server). The following Figure 1 shows the HTML5 LED web page provided by this example. The example is designed such that one can use it as a base for designing a professional web based device management application.
 
 ![Minnow Server Example](https://dzone.com/storage/temp/11061598-figure3.png "Minnow Server Example")
 
@@ -48,7 +48,7 @@ In addition to the host build environments, we provide a ready to use build envi
 
 ### Prerequisites
 
-1. Carefully read the [Minnow Server SPA tutorial](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server), which provides details on the complete SPA development process.
+1. Carefully read the [Minnow Server SPA tutorial](https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server), which provides details on the complete SPA development process.
 2. Perform the following commands on the command line to clone the Minnow Server and the required libraries:
 
  git clone https://github.com/RealTimeLogic/MinnowServer.git  
@@ -69,7 +69,7 @@ Drag and drop the main HTML file www/index.html into your browser window. The Ja
 Login by using the username 'root' and password 'password'.
 
 ### Compile and run for release mode
-Follow the [Minnow Server design guide](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server#deploy) for how to amalgamate and compress all web resources in the 'www' directory. Make sure to select Gzip compression so the online service creates the required index.c file. Replace example/index.c with the generated file.
+Follow the [Minnow Server design guide](https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server#deploy) for how to amalgamate and compress all web resources in the 'www' directory. Make sure to select Gzip compression so the online service creates the required index.c file. Replace example/index.c with the generated file.
 
 Compile and run the server. You may now load the web interface directly from the server by navigating to http://device.
 
@@ -115,7 +115,7 @@ Use a browser and navigate to http://MakoServer. The main page shows a list of c
 
 ### Installing the SMQ Broker on an Online VPS or Cloud Server
 
-Follow the [Setting up an Online SMQ IoT Broker](https://makoserver.net/blog/2016/04/Setting-up-a-Low-Cost-SMQ-IoT-Broker) tutorial. Replace the server side app in this tutorial with the content of IoT/www.
+Follow the [Setting up an Online SMQ IoT Broker](https://makoserver.net/articles/Setting-up-a-Low-Cost-SMQ-IoT-Broker) tutorial. Replace the server side app in this tutorial with the content of IoT/www.
 
 # Files
 

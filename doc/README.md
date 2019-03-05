@@ -6,7 +6,7 @@ The following details the communication API, the security concept used by the re
 
 A message is an array of two elements, the message-name and the message body. The message body may be a primitive type, an object or array.
 
-For an introduction to the JSON Communication concept, see the [Minnow Server tutorial: How to Communicate Between the Browser and Device using WebSockets](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server#communicate)
+For an introduction to the JSON Communication concept, see the [Minnow Server tutorial: How to Communicate Between the Browser and Device using WebSockets](https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server#communicate)
 
 * **Message devname** sent from device to browser after connection establishment: ["devname",["the-device-name"]]
 * **Message nonce** is sent from device to browser just after sending **devname** or each time the user provides wrong credentials: ["nonce"," b64-encoded-12-byte-nonce "]. See authentication and password management below for more information on how the nonce is used.
@@ -19,7 +19,7 @@ For an introduction to the JSON Communication concept, see the [Minnow Server tu
 
 ## AJAX over WebSockets
 
-The example supports AJAX in addition to providing asynchronous JSON communication. AJAX is an encapsulated message sent over the asynchronous JSON WebSocket connection bus. AJAX is a type of remote procedure call that includes a request and response. The included AJAX over WebSockets functionality is virtually identical to the example code provided in the [AJAX over WebSockets tutorial](https://makoserver.net/blog/2018/10/AJAX-over-WebSockets) .
+The example supports AJAX in addition to providing asynchronous JSON communication. AJAX is an encapsulated message sent over the asynchronous JSON WebSocket connection bus. AJAX is a type of remote procedure call that includes a request and response. The included AJAX over WebSockets functionality is virtually identical to the example code provided in the [AJAX over WebSockets tutorial](https://makoserver.net/articles/AJAX-over-WebSockets) .
 
 **AJAX messages:**
 * **math/add** - identical to math/add in the AJAX over WebSockets tutorial
@@ -36,7 +36,7 @@ In addition to the JSON text frames, binary frames are used when sending binary 
 
 The example includes logic that makes it more difficult for an attacker to eavesdrop and extract the credentials from the device. We use [SHA-1](https://en.wikipedia.org/wiki/SHA-1) hashing for making it difficult to both extract the credentials from the device and eavesdrop on the credentials.
 
-For an introduction to the secure authentication concept, see the [Minnow Server tutorial: How to Authenticate the User](https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server#authenticate)
+For an introduction to the secure authentication concept, see the [Minnow Server tutorial: How to Authenticate the User](https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server#authenticate)
 
 There are several security aspects one must consider when dealing with credentials, such as:
 

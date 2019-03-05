@@ -98,7 +98,7 @@ $(document).ready(function(){
 
     /* BEGIN: Calculator
        The calculator shows how to use the AJAX API. See the AJAX call in function 'calc' for details.
-       Tutorial: https://makoserver.net/blog/2018/10/AJAX-over-WebSockets
+       Tutorial: https://makoserver.net/articles/AJAX-over-WebSockets
      */
 
     let lastop;

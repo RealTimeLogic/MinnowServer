@@ -5,7 +5,7 @@
   https://realtimelogic.info/htmla/
 
   See the following tutorial for details on how to use the above service:
-  https://realtimelogic.com/blog/2018/11/Creating-SinglePage-Apps-with-the-Minnow-Server
+  https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server
 
 
 */
