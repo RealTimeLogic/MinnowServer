@@ -24,8 +24,9 @@ endif
 
 # Enable IoT mode and connect to the test server minnow.ml
 # See documention for details. 
-#CFLAGS += -DUSE_SMQ '-DSMQ_DOMAIN="minnow.ml"'
-
+ifdef IOT
+CFLAGS += -DUSE_SMQ '-DSMQ_DOMAIN="minnow.ml"'
+endif
 
 #Prints info in console
 CFLAGS += -DXPRINTF
