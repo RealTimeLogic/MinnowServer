@@ -12,9 +12,11 @@ You may use this code "as is" with [esp-open-rtos](https://github.com/SuperHouse
 
 The following instructions are for building the Minnow Server example using the [SharkSSL ESP8266 IDE](https://realtimelogic.com/downloads/sharkssl/ESP8266/).
 
-1. When the VM is running, navigate to the web based Linux shell: http://IP-ADDRESS-OF-VM/webshell/
-2. Login with the credentials sharkssl/SharkSSL
-3. Run the following Linux commands in the WebShell (the sudo password is 'SharkSSL'):
+1. When the VM is running, navigate to: http://IP-ADDRESS-OF-VM/
+2. Configure (set) your wi-fi credentials as instructed by the web page.
+3. Navigate to the web based Linux shell: http://IP-ADDRESS-OF-VM/webshell/
+4. Login with the credentials sharkssl/SharkSSL
+5. Run the following Linux commands in the WebShell (the sudo password is 'SharkSSL'):
 
 ```bash
 # Navigate to examples directory
