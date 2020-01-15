@@ -22,10 +22,10 @@ else
 CFLAGS += -Os -O3
 endif
 
-# Enable IoT mode and connect to the test server minnow.ml
+# Enable IoT mode and connect to the test server minnow.realtimelogic.com
 # See documention for details. 
 ifdef IOT
-CFLAGS += -DUSE_SMQ '-DSMQ_DOMAIN="minnow.ml"'
+CFLAGS += -DUSE_SMQ '-DSMQ_DOMAIN="minnow.realtimelogic.com"'
 endif
 
 #Prints info in console

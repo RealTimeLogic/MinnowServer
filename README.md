@@ -79,7 +79,7 @@ The temperature can be controlled from the command line by pressing the up or do
 ## How to IoT enable the reference example
 The Minnow Server reference example can also be accessed from outside the Intranet when the reference example is IoT enabled and an [SMQ broker](https://makoserver.net/smq-broker/) is deployed on the Internet. You do not need to setup an online server if you simply want to test the IoT connectivity. In the following example, we will show how to IoT enable the reference example and have the reference example connect to an SMQ broker running on another computer on your Intranet. The SMQ broker needs another IP address than the one used for the Minnow Server. You can either use another computer on your Intranet or run the SMQ broker in a virtual machine (VM).
 
-Online IoT bridge Demo: [https://minnow.ml/IoT-Bridge-Demo.html](https://minnow.ml/IoT-Bridge-Demo.html)
+Online IoT bridge Demo: [https://minnow.realtimelogic.com/IoT-Bridge-Demo.html](https://minnow.realtimelogic.com/IoT-Bridge-Demo.html)
 
 Copy the "IoT" directory to the computer (or VM) where the SMQ broker will run. [Download the Mako Server](https://makoserver.net/download/overview/) and unpack the server on the same computer. You need the mako executable and mako.zip. Copy those two files to the IoT directory. You should have mako (Win: mako.exe), mako.zip, and the directory www in the IoT directory. The 'www' directory contains the server side app that sets up the SMQ broker. You also need a copy of the Minnow Server application in the IoT/www directory. Copy everything from 'www' (the Minnow Server application) to IoT/www and rename IoT/www/index.html to IoT/www/device.htmls.
 
