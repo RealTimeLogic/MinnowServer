@@ -17,6 +17,16 @@ The Minnow Server includes porting layers for the following platforms:
 
 * lwIP-raw lwIP raw TCP API port: http://lwip.wikia.com/wiki/Raw/TCP
 
+
+# Embedded Web Server Considerations
+
+Consider reading the following tutorials as they may save you from serious problems down the road:
+
+* [How Anyone Can Hack Your Embedded Web Server](https://realtimelogic.com/articles/How-Anyone-Can-Hack-Your-Embedded-Web-Server)
+* [Certificate Management for Embedded Web Servers](https://realtimelogic.com/articles/Certificate-Management-for-Embedded-Systems)
+* [When Not to Embed a Web Server in a Device](https://realtimelogic.com/articles/When-Not-to-Embed-a-Web-Server-in-a-Device)
+
+
 # Minnow Server Reference Platform
 
 The Minnow Server includes a reference platform that can be used as a base for designing advanced web based device management applications.
