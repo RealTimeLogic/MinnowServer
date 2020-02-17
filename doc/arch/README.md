@@ -3,6 +3,11 @@
 This directory contains porting code for ESP8266. The code should be very similar for ESP32. 
 You may use this code "as is" with [esp-open-rtos](https://github.com/SuperHouse/esp-open-rtos) or with the [SharkSSL ESP8266 IDE](https://realtimelogic.com/downloads/sharkssl/ESP8266/). The server runs in non secure mode when used with the esp-open-rtos package and in secure (TLS) mode when used with the SharkSSL ESP8266 IDE.
 
+### Note:
+
+The much more sophisticated Barracuda App Server, which includes WebSockets, is also available for ESP32 (WROVER). See the [Barracuda App Server for ESP32](https://realtimelogic.com/downloads/bas/ESP32/) download page for details.
+
+
 ### Files:
 
 * EspMain.c - FreeRTOS/lwIP esp-open-rtos startup code and initialization, including some APIs used by the example code

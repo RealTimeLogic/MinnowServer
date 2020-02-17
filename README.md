@@ -17,6 +17,10 @@ The Minnow Server includes porting layers for the following platforms:
 
 * lwIP-raw lwIP raw TCP API port: http://lwip.wikia.com/wiki/Raw/TCP
 
+#### Note:
+
+The above mentioned porting layers are not included with the Minnow Server. Carefully read the instructions below to find out how to download the porting layers. Using ESP8266 or ESP32? Check out the ready to use [a ESP8266/ESP32 example](doc/arch/README.md).
+
 
 # Embedded Web Server Considerations
 
