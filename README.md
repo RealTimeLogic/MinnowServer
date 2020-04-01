@@ -69,6 +69,8 @@ In addition to the host build environments, we provide a ready to use build envi
 
 The JSON and SMQ libraries are used by the Minnow Server reference example. The SMQ stack is needed even if you do not plan on IoT enabling the reference platform since the Minnow Server uses the SMQ TCP/IP porting layer.
 
+**Note:** If you are not planning on IoT enabling the Minnow Server, copy the [SMQ/src/arch/](https://github.com/RealTimeLogic/SMQ/tree/master/src/arch) directory to the Minnow Server.
+
 ### Compile and run for developer mode
 Compile the code and start the server. The server will attempt to use the default HTTP port or an alternative port if it cannot open the default port. Run the following command on Linux to open the default port 80: sudo ./minnow
 
