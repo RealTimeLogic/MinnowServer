@@ -30,7 +30,7 @@ Consider reading the following tutorials as they may save you from serious probl
 * [Certificate Management for Embedded Web Servers](https://realtimelogic.com/articles/Certificate-Management-for-Embedded-Systems)
 * [When Not to Embed a Web Server in a Device](https://realtimelogic.com/articles/When-Not-to-Embed-a-Web-Server-in-a-Device)
 
-> *Powerfull Minnow Server Alternative for ESP32:*
+> *Powerful Minnow Server Alternative for ESP32:*
 >
 > The ESP32 is a popular device and you should consider using the
 > [Barracuda App Server for ESP32](https://github.com/RealTimeLogic/LspAppMgr-ESP32)
