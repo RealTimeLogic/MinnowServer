@@ -69,7 +69,7 @@ $(document).ready(function(){
         const pwd=$("#LoginPwd").val().trim();
         var sha = new jsSHA("SHA-1", "TEXT");
         sha.update(pwd);
-        hash = sha.getHash("BYTES");
+        const hash = sha.getHash("BYTES");
         sha = new jsSHA("SHA-1", "BYTES");
         sha.update(hash);
         sha.update(nonce);

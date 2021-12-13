@@ -5,13 +5,13 @@
 The Minnow Server includes porting layers for the following platforms:
 
 * FreeRTOS-TCP https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/
-* Harmony Microchip Harmony TCP/IP
-* MDK Keil MDK
-* MQX MQX and RTCS from Freescale
-* NetX ThreadX and NetX from Express Logic
-* Posix POSIX including Linux, Mac, VxWorks, QNX
-* Windows Standard Windows and Win CE
-* lwIP lwIP Netconn API for RTOS enabled systems
+* Harmony - Microchip Harmony TCP/IP
+* MDK - Keil MDK
+* MQX - MQX and RTCS from Freescale
+* NetX - ThreadX and NetX from Express Logic
+* Posix - POSIX including Linux, Mac, VxWorks, QNX
+* Windows - Standard Windows and Win CE
+* lwIP - lwIP Netconn API for RTOS enabled systems
 
 **Bare metal (no RTOS) event based porting layers:**
 
