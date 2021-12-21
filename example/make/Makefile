@@ -69,7 +69,7 @@ SOURCE = AllocatorIntf.c \
 
 OBJ := $(SOURCE:%.c=$(ODIR)/%$(O))
 
-.PHONY: packwww clean help
+.PHONY: packwwwifchanged packwww clean help
 
 help:
 	@echo "make minnow  -> Build the Minnow Server reference example"
@@ -80,6 +80,8 @@ help:
 
 minnow: $(ODIR) $(OBJ)
 	$(CC) $(LNKOFT)$@ $(OBJ)
+
+packwwwifchanged: ../src/index.c
 
 # minnow above depends on ../src/index.c. This section auto builds
 # ../src/index.c if any www files are updated.
