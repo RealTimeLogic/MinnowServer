@@ -94,7 +94,7 @@ packwww: $(ODIR)
 	@echo "Zipping the 'www' directory...."
 	cd ../..&&zip -r example/make/obj/www.zip www
 	@echo "Uploading the zipped 'www' directory to the HTML amalgamator..."
-	cd obj&&curl -F download=true -F jsc=SIMPLE -F zip=true -F upload=@www.zip https://realtimelogic.info/htmla/ --output index.c
+	cd obj&&curl --progress-bar -F download=true -F jsc=SIMPLE -F zip=true -F upload=@www.zip https://realtimelogic.info/htmla/ --output index.c 2>&1
 	@echo "Replacing ../src/index.c with the new amalgamated file"
 	mv obj/index.c ../src/
 
