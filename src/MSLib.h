@@ -10,9 +10,9 @@
  ****************************************************************************
  *			      HEADER
  *
- *   $Id: MSLib.h 4125 2017-12-15 17:59:48Z wini $
+ *   $Id: MSLib.h 4827 2021-08-23 20:44:04Z wini $
  *
- *   COPYRIGHT:  Real Time Logic LLC, 2013 - 2018
+ *   COPYRIGHT:  Real Time Logic LLC, 2013 - 2020
  *
  *   This software is copyrighted by and is the sole property of Real
  *   Time Logic LLC.  All rights, title, ownership, or other interests in
@@ -122,7 +122,7 @@ struct MST;
 /** @} */ /* end group MSLibErrCodes */ 
 
 
-#define MAX_HTTP_H_SIZE 18
+#define MAX_HTTP_H_SIZE 20
 
 /** A page fetch callback function used by function MS_ebServer is
     typically installed when the web application is stored on the
@@ -300,11 +300,70 @@ typedef struct
 extern "C" {
 #endif
 
+/** @defgroup MsHelperFunc Minnow Server Helper Functions
+    @ingroup MSLib
+
+    \brief Minnow Server Helper Functions.
+
+@{
+*/
+
+/* Similar to the standard ANSI function strstr, except for that it
+   does not rely on str being a zero terminated string. The compare is
+   also case insensitive.
+
+  \param str string to search.
+  \param slen str len
+  \param substrs substring to find in str.
+*/
+
 U8* msstrstrn(U8* str, int slen, const U8* substr);
+
+/** Copies 'src' to 'dest'
+    \param dest the destination buffer
+    \param dlen destination buffer length
+    \param src buffer to copy
+    \param slen 'src' length
+    \return 'dest' pointer incremented by amount of data added
+ */
 U8* msCpAndInc(U8* dest, int* dlen, const U8* src, int slen);
+
+
+/** Encodes 'src' as B64 and adds the string to 'dest'
+    \param dest the destination buffer
+    \param dlen destination buffer length
+    \param src (binary) buffer to B64 encode
+    \param slen 'src' length
+    \return 'dest' pointer incremented by amount of data added
+ */
 U8* msB64Encode(U8* dest, int* dlen, const U8* src, int slen);
+
+
+/** Formats 'n' as a string and adds the string to 'dest'
+    \param dest the destination buffer
+    \param dlen destination buffer length
+    \param n the number to format
+    \return 'dest' pointer incremented by amount of data added
+ */
 U8* msi2a(U8* dest, int* dlen, U32 n);
+
+
+/** Adds the following HTTP response to buffer 'dest'
+    \code
+    HTTP/1.0 200 OK
+    Content-Length: ['contentLen' converted 2 string]
+
+    \endcode
+    \param dest the destination buffer
+    \param dlen destination buffer length
+    \param contentLen the size of the static HTML page
+    \param extHeader optional extra headers formatted as '\\r\\nkey:val'
+    \return 'dest' pointer incremented by amount of data added
+ */
 U8* msRespCT(U8* dest, int* dlen, int contentLen, const U8* extHeader);
+
+/** @} */ /* end group MsHelperFunc */ 
+
 
 /** Minnow Server Constructor
     \param o MS instance

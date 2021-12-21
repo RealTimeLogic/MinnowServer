@@ -10,9 +10,9 @@
  ****************************************************************************
  *   PROGRAM MODULE
  *
- *   $Id: MSLib.c 4125 2017-12-15 17:59:48Z wini $
+ *   $Id: MSLib.c 4769 2021-06-11 17:29:36Z gianluca $
  *
- *   COPYRIGHT:  Real Time Logic LLC, 2013 - 2018
+ *   COPYRIGHT:  Real Time Logic LLC, 2013 - 2020
  *
  *   This software is copyrighted by and is the sole property of Real
  *   Time Logic LLC.  All rights, title, ownership, or other interests in
@@ -103,15 +103,6 @@ msB64Encode(U8* dest, int* dlen, const U8* src, int slen)
 }
 
 
-/* msstrstrn:
-  Similar to the standard ANSI function strstr, except for that it
-  does not rely on str being a zero terminated string. The compare is
-  also case insensitive.
-
-  str: String to search.
-  slen: str len
-  substr: Substring to try to find in str.
-*/
 U8*
 msstrstrn(U8* str, int slen, const U8* substr)
 {

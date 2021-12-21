@@ -81,6 +81,13 @@ help:
 minnow: $(ODIR) $(OBJ)
 	$(CC) $(LNKOFT)$@ $(OBJ)
 
+# minnow above depends on ../src/index.c. This section auto builds
+# ../src/index.c if any www files are updated.
+WWWDIRS := $(shell find ../../www -type d)
+WWWFILES = $(foreach dir,$(WWWDIRS),$(wildcard $(dir)/*))
+../src/index.c: $(WWWFILES)
+	$(MAKE) packwww
+
 packwww: $(ODIR)
 	@echo "Zipping the 'www' directory...."
 	cd ../..&&zip -r example/make/obj/www.zip www
