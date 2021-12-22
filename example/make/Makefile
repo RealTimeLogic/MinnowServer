@@ -65,7 +65,7 @@ SOURCE = AllocatorIntf.c \
 	MSLib.c \
 	index.c \
 	JsonStaticAlloc.c \
-	main.c
+	MinnowRefPlatMain.c
 
 OBJ := $(SOURCE:%.c=$(ODIR)/%$(O))
 
