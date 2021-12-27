@@ -31,24 +31,39 @@ endif
 #Prints info in console
 CFLAGS += -DXPRINTF
 
+ifneq ($(wildcard ../../../SharkSSL/.*),)
+USE_SHARKSSL=1
+endif
 
 
 ifndef PLAT
 PLAT=Posix
+ifdef USE_SHARKSSL
+CFLAGS+=$(IFT)../../../SharkSSL/inc/arch/Posix $(IFT)../../../SharkSSL/src/arch/Posix
+else
 CFLAGS+=$(IFT)../../../SMQ/src/arch/Posix
+endif
 EXTRALIBS += -lrt
 endif
 
-CFLAGS += $(IFT)../../../JSON/inc \
-	$(IFT)../../../SMQ/src \
-	$(IFT)../../../SMQ/examples \
-	$(IFT)../../src
+ifdef USE_SHARKSSL
+CFLAGS += $(IFT)../../../SharkSSL/inc $(IFT)../../../SharkSSL/examples
+else
+CFLAGS += $(IFT)../../../SMQ/src $(IFT)../../../SMQ/examples
+endif
+CFLAGS += $(IFT)../../src $(IFT)../../../JSON/inc
+
 
 ifndef ODIR
 ODIR = obj
 endif
 
-VPATH=../../../JSON/src:../../../SMQ/src:../../src:../src
+VPATH=../../../JSON/src:../../src:../src
+ifdef USE_SHARKSSL
+VPATH+=../../../SharkSSL/src
+else
+VPATH+=../../../SMQ/src
+endif
 
 # Implicit rules for making .o files from .c files
 $(ODIR)/%$(O) : %.c
@@ -61,11 +76,17 @@ SOURCE = AllocatorIntf.c \
 	JParser.c \
 	JVal.c \
 	selib.c \
-	SMQClient.c \
 	MSLib.c \
 	index.c \
 	JsonStaticAlloc.c \
 	MinnowRefPlatMain.c
+
+ifdef USE_SHARKSSL
+SOURCE += SharkSSL.c SharkMQ.c
+else
+SOURCE += SMQClient.c
+endif
+
 
 OBJ := $(SOURCE:%.c=$(ODIR)/%$(O))
 

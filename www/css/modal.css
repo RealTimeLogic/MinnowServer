@@ -91,7 +91,7 @@
 .login-container .login-form button:hover{
   background: var(--color1);
 }
-.login-container .login-form button:active{
+.login-container .login-form button:focus{
   background: var(--color4);
 }
 .login-container .login-form .login-error{

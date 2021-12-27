@@ -51,6 +51,7 @@ $(document).ready(function(){
         else
             errElem.hide();
         showDialog("LoginDialog");
+        $("#LoginUname").trigger("focus");
     }
 
     /* Insert device name into the login dialog.

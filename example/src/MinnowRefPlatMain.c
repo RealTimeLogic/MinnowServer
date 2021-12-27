@@ -326,13 +326,7 @@ main()
    { WSADATA wsaData; WSAStartup(MAKEWORD(1,1), &wsaData); }
 #else
    /* Assuming POSIX (Linux). Prevent signals from terminating program */
-    ignoreSignal(SIGHUP);
-    ignoreSignal(SIGTTOU);
-    ignoreSignal(SIGTTIN);
-    ignoreSignal(SIGTSTP);
     ignoreSignal(SIGPIPE);
-    ignoreSignal(SIGXFSZ);
-   setConioTerminalMode();
 #endif
    mainTask(0);
    xprintf(("Exiting...\n"));
@@ -1337,6 +1331,11 @@ revert2WsCon(SharkSsl* sharkSsl, RecData* rd, ConnData* cd, MS* ms)
 #define revert2WsCon(sharkSsl, rd, cd, ms) /* Do nothing */
 #endif
 
+#ifdef MS_SEC
+#define ALTERNATIVE_PORTNO 9442
+#else
+#define ALTERNATIVE_PORTNO 8079
+#endif
 
 /* Attempt to open the default server listening port 80 (secure mode
  * 443) or use an alternative port number if the default port is in
@@ -1355,8 +1354,8 @@ openServerSock(SOCKET* sock)
    status = se_bind(sock, port);
    if(status)
    {
-      port=9442;
-      while(status == -3 && ++port < 9460)
+      port= ALTERNATIVE_PORTNO;
+      while(status == -3 && ++port < (ALTERNATIVE_PORTNO+10))
          status = se_bind(sock, port);
    }
    if(!status)

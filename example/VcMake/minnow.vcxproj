@@ -22,7 +22,7 @@
     <ClCompile Include="..\..\src\MSLib.c" />
     <ClCompile Include="..\src\index.c" />
     <ClCompile Include="..\src\JsonStaticAlloc.c" />
-    <ClCompile Include="..\src\main.c" />
+    <ClCompile Include="..\src\MinnowRefPlatMain.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DDAE58A8-362E-4508-94BC-B9FD7BE9D938}</ProjectGuid>

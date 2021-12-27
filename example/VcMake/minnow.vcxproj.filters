@@ -27,9 +27,6 @@
     <ClCompile Include="..\src\JsonStaticAlloc.c">
       <Filter>Example</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\main.c">
-      <Filter>Example</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\JSON\src\AllocatorIntf.c">
       <Filter>JSON</Filter>
     </ClCompile>
@@ -53,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\SMQ\src\selib.c">
       <Filter>SeLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MinnowRefPlatMain.c">
+      <Filter>Example</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
