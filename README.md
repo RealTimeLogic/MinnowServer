@@ -19,8 +19,9 @@ The Minnow Server includes porting layers for the following platforms:
 
 #### Note:
 
-The above mentioned porting layers are not included with the Minnow Server. Carefully read the instructions below to find out how to download the porting layers. Using ESP8266 or ESP32? Check out the ready to use [a ESP8266/ESP32 example](doc/arch/README.md).
+The above mentioned porting layers are not included with the Minnow Server. Carefully read the instructions below to find out how to download the porting layers. Using ESP8266 or ESP32? Check out the [ESP8266 build files](doc/arch/README.md) and the [SharkSSL ESP32 IDE](https://realtimelogic.com/downloads/sharkssl/ESP32/), which includes the Minnow Server Reference Example.
 
+The Minnow Server provides a secure HTTPS connections when used with [SharkSSL](https://github.com/RealTimeLogic/SharkSSL)
 
 # Embedded Web Server Considerations
 
