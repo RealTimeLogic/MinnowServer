@@ -57,6 +57,10 @@
 /* IoT mode: include the optional SMQ client if 'USE_SMQ' is defined */
 #ifdef USE_SMQ
 #include <SMQ.h>
+#ifdef MS_SEC
+/* A list of known CAs: See SharkSsl_setCAList(..) in MainTask */
+#include "CA-list.h"
+#endif
 #endif
 
 
@@ -102,7 +106,7 @@ static AllocatorIntf da; /* JVal String Allocator */
 /* The domain name (or IP address) for the (online) SMQ broker.
  */
 #ifndef SMQ_DOMAIN
-#define SMQ_DOMAIN "MakoServer"
+#define SMQ_DOMAIN "minnow.realtimelogic.com"
 #endif
 #ifdef MS_SEC
 #define SMQ_PROTOCOL "https://"
@@ -576,7 +580,7 @@ sendLedInfo(ConnData* cd)
 {
    int i, ledLen;
    SendData sd;
-   const LedInfo* ledInfo = getLedInfo(&ledLen);
+   const LedInfo* ledInf = getLedInfo(&ledLen);
    SendData_constructor(&sd, cd);
    beginMessage(&sd, "ledinfo");
    JEncoder_beginObject(&sd.encoder);
@@ -585,10 +589,10 @@ sendLedInfo(ConnData* cd)
    for(i = 0 ; i < ledLen ; i++)
    {
       JEncoder_set(&sd.encoder, "{dssb}",
-                   JE_MEMBER(ledInfo+i, id),
-                   "color", ledType2String(ledInfo[i].color),
-                   JE_MEMBER(ledInfo+i, name),
-                   "on",(BaBool)getLedState(ledInfo[i].id));
+                   JE_MEMBER(ledInf+i, id),
+                   "color", ledType2String(ledInf[i].color),
+                   JE_MEMBER(ledInf+i, name),
+                   "on",(BaBool)getLedState(ledInf[i].id));
    }
    JEncoder_endArray(&sd.encoder);
    JEncoder_endObject(&sd.encoder);
@@ -1020,6 +1024,7 @@ RecData_manageBinFrame(RecData* o,ConnData* cd, U8* data, int len,BaBool eom)
 static int
 RecData_manageMessage(RecData* o,ConnData* cd,const char* msg,JErr* e,JVal* v)
 {
+   (void)o;
    switch(*msg)
    {
       case 'A': /* AJAX is encapsulated as an async message */
@@ -1188,7 +1193,7 @@ RecData_runSMQ(RecData* rd, ConnData* cd)
    int len;
    for(;;) /* Run as long as we have data */
    {
-      if( (len = SharkMQ_getMessage(&cd->u.s.smq, &msg)) == 0)
+      if( (len = SharkMQ_getMessage(&cd->u.s.smq, &msg)) == SMQ_TIMEOUT)
       {  /* No data */
          return rd->authenticated ? eventSimulator(cd) : 0;
       }
@@ -1422,6 +1427,10 @@ mainTask(SeCtx* ctx)
                         0,   /* SSL cache not used by client */
                         2000,  /* inBuf size */
                         3000); /*outBuf size is fixed and must fit server cert*/
+   /* CA list from CA-list.h: Makes it possible to trust
+      https://minnow.realtimelogic.com/
+   */
+   SharkSsl_setCAList(&sharkSslClient, sharkSslCAList);
 #endif
    SharkSsl_constructor(&sharkSslServer,
                         SharkSsl_Server,

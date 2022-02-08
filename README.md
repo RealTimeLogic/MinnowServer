@@ -23,6 +23,14 @@ The above mentioned porting layers are not included with the Minnow Server. Care
 
 The Minnow Server provides a secure HTTPS connection when used with [SharkSSL](https://github.com/RealTimeLogic/SharkSSL)
 
+# Three WebSocket Servers
+
+The Minnow Server is one of three WebSocket server implementations provided by Real Tim Logic.
+
+1. The Minnow Server is designed for resource constrained devices such as a Cortex-M0. A Minnow Server application must be designed as an SPA, and preferably use the [SPA amalgamator service](https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server#deploy) for converting the SPA assets into a C array.
+2. The [Barracuda Web Server's WebSocket Server](https://realtimelogic.com/ba/doc/en/C/reference/html/group__WebSockets.html) enables hybrid server-side/client-side web applications to communicate using both HTTP and WebSockets.
+3. The [Barracuda App Server's WebSocket Server](https://realtimelogic.com/ba/doc/?url=SockLib.html#WebSockets) provides the easiest to use solution, where server side business logic can be designed in the easy to learn [Lua scripting language](https://realtimelogic.com/products/lua-server-pages/). With the Barracuda App Server, much of the device's high level logic can be implemented in Lua. Lua is popular in games, and now embedded systems can take a similar approach to rapid device code design. See the online [WebSocket Server Tutorial](https://tutorial.realtimelogic.com/WebSockets.lsp) for details.
+
 # Embedded Web Server Considerations
 
 Consider reading the following tutorials as they may save you from serious problems down the road:
