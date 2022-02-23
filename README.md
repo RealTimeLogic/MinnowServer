@@ -24,7 +24,7 @@ The above mentioned porting layers are not included with the Minnow Server. Care
 
 # Three WebSocket Servers
 
-The Minnow Server is one of three WebSocket server implementations provided by Real Tim Logic.
+The Minnow Server is one of three WebSocket server implementations provided by Real Time Logic.
 
 1. The Minnow Server is designed for resource constrained devices such as a Cortex-M0. A Minnow Server application must be designed as an SPA, and preferably use the [SPA amalgamator service](https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server#deploy) for converting the SPA assets into a C array.
 2. The [Barracuda Web Server's WebSocket Server](https://realtimelogic.com/ba/doc/en/C/reference/html/group__WebSockets.html) enables hybrid server-side/client-side web applications to communicate using both HTTP and WebSockets.
