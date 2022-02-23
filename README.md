@@ -1,6 +1,6 @@
 # Minnow Server
 
-[Minnow Server](https://realtimelogic.com/products/sharkssl/minnow-server/) , a super small and fast embedded HTTP(S) WebSocket server, lets small microcontrollers with no external memory act as real-time web servers.
+[Minnow Server](https://realtimelogic.com/products/sharkssl/minnow-server/), a super small and fast embedded HTTP(S) WebSocket server, lets small microcontrollers with no external memory act as real-time web servers.
 
 The Minnow Server includes porting layers for the following platforms:
 
@@ -8,8 +8,9 @@ The Minnow Server includes porting layers for the following platforms:
 * Harmony - Microchip Harmony TCP/IP
 * MDK - Keil MDK
 * MQX - MQX and RTCS from Freescale
-* NetX - ThreadX and NetX from Express Logic
-* Posix - POSIX including Linux, Mac, VxWorks, QNX
+* NetX - ThreadX and NetX from Express Logic (Azure RTOS)
+* BSD Sockets - POSIX including Linux, Mac, VxWorks, QNX, and Zephyr
+* INTEGRITY - Green Hills Software
 * Windows - Standard Windows and Win CE
 * lwIP - lwIP Netconn API for RTOS enabled systems
 
@@ -19,9 +20,7 @@ The Minnow Server includes porting layers for the following platforms:
 
 #### Note:
 
-The above mentioned porting layers are not included with the Minnow Server. Carefully read the instructions below to find out how to download the porting layers. Using ESP8266 or ESP32? Check out the [ESP8266 build files](doc/arch/README.md) and the [SharkSSL ESP32 IDE](https://realtimelogic.com/downloads/sharkssl/ESP32/), which includes the Minnow Server Reference Example.
-
-The Minnow Server provides a secure HTTPS connection when used with [SharkSSL](https://github.com/RealTimeLogic/SharkSSL)
+The above mentioned porting layers are not included with the Minnow Server. Carefully read the instructions below to find out how to download the porting layers. Using ESP8266 or ESP32? Check out the [ESP8266 build files](doc/arch/README.md) and the [SharkSSL ESP32 IDE](https://realtimelogic.com/downloads/sharkssl/ESP32/).
 
 # Three WebSocket Servers
 
@@ -31,25 +30,11 @@ The Minnow Server is one of three WebSocket server implementations provided by R
 2. The [Barracuda Web Server's WebSocket Server](https://realtimelogic.com/ba/doc/en/C/reference/html/group__WebSockets.html) enables hybrid server-side/client-side web applications to communicate using both HTTP and WebSockets.
 3. The [Barracuda App Server's WebSocket Server](https://realtimelogic.com/ba/doc/?url=SockLib.html#WebSockets) provides the easiest to use solution, where server side business logic can be designed in the easy to learn [Lua scripting language](https://realtimelogic.com/products/lua-server-pages/). With the Barracuda App Server, much of the device's high level logic can be implemented in Lua. Lua is popular in games, and now embedded systems can take a similar approach to rapid device code design. See the online [WebSocket Server Tutorial](https://tutorial.realtimelogic.com/WebSockets.lsp) for details.
 
-# Embedded Web Server Considerations
+# Minnow Server SPA Reference Example
 
-Consider reading the following tutorials as they may save you from serious problems down the road:
+This repository includes the Minnow Server and the Minnow Server Single Page Application (SPA) Reference Example. The Minnow Server is also included in the [SharkSSL Repository](https://github.com/RealTimeLogic/SharkSSL) and will use a secure (HTTPS) connection when used with SharkSSL, but note that the SharkSSL repository does not include the SPA Reference Example.  Check out the SharkSSL IDE if you want to easily test the Minnow Server Reference Example in secure mode (HTTPS). See the tutorial [Beginner's Guide To Secure IoT Communication and X.509 Certificate Managment](https://realtimelogic.com/articles/Noobs-friendly-Embedded-IDE-Designed-for-Learning-Secure-IoT) for details.
 
-* [How Anyone Can Hack Your Embedded Web Server](https://realtimelogic.com/articles/How-Anyone-Can-Hack-Your-Embedded-Web-Server)
-* [Certificate Management for Embedded Web Servers](https://realtimelogic.com/articles/Certificate-Management-for-Embedded-Systems)
-* [When Not to Embed a Web Server in a Device](https://realtimelogic.com/articles/When-Not-to-Embed-a-Web-Server-in-a-Device)
-
-> *Powerful Minnow Server Alternative for ESP32:*
->
-> The ESP32 is a popular device and you should consider using the
-> [Barracuda App Server for ESP32](https://github.com/RealTimeLogic/LspAppMgr-ESP32)
-> if you are considering using this powerful and versatile device.
-
-# Minnow Server Reference Platform
-
-The Minnow Server includes a reference platform that can be used as a base for designing advanced web based device management applications.
-
-The Minnow Server Reference Platform is a fully functional example that follows the design guidelines outlined in the tutorial [Creating Single-Page Apps with the Minnow Server](https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server). The following Figure 1 shows the HTML5 LED web page provided by this example. The example is designed such that one can use it as a base for designing a professional web based device management application.
+The Minnow Server Reference Example is a fully functional example that follows the design guidelines outlined in the tutorial [Creating Single-Page Apps with the Minnow Server](https://realtimelogic.com/articles/Creating-SinglePage-Apps-with-the-Minnow-Server). The following Figure 1 shows the HTML5 LED web page provided by this example. The example is designed such that one can use it as a base for designing a professional web based device management application.
 
 ![Minnow Server Example](https://realtimelogic.com/blogmedia/MinnowServer-SPA/figure13.png "Minnow Server Example")
 
@@ -60,13 +45,13 @@ The example provides a direct WebSocket server API designed for local Intranet u
 
 ![Local or External Access](https://raw.githubusercontent.com/RealTimeLogic/MinnowServer/master/doc/img/local-and-remote-conn.jpg "Local or External Access")
 
-**Figure 2: Access reference platform locally or via the Internet**
+**Figure 2: Access reference example locally or via the Internet**
 
 The optional IoT solution enables a device installed on a private network to be accessed from the Internet without having to do any network configurations. The example includes the source code for the online IoT server setup. The online server can easily be installed on any cloud solution, including low cost Virtual Private Servers. An interesting feature of the IoT version is that it allows the external user to use a secure TLS connection when the Minnow Server is not TLS enabled.
 
-## Compiling the Reference Platform
+## Compiling the Reference Example
 
-The Minnow Server and the reference platform can be compiled for any microcontroller. The Minnow Server includes porting layers for many RTOS's and TCP/IP stacks. However, a few code sections in the example code are designed to run on a non RTOS environment and must be modified if you plan on compiling the example "as is" for a microcontroller. The purpose with the reference platform is educational, and compiling and running the code on a host computer is the first step. You may compile the code on Windows using the included Visual C++ project file or on Linux/Mac using the included makefile.
+The Minnow Server and the reference example can be compiled for any microcontroller. The Minnow Server includes porting layers for many RTOS's and TCP/IP stacks. However, a few code sections in the example code are designed to run on a non RTOS environment and must be modified if you plan on compiling the example "as is" for a microcontroller. The purpose with the reference example is educational, and compiling and running the code on a host computer is the first step. You may compile the code on Windows using the included Visual C++ project file or on Linux/Mac using the included makefile.
 
 In addition to the host build environments, we provide a ready to use build environment for [FreeRTOS/lwIP ESP8266](doc/arch/). The following video shows how to compile and upload the code to the ESP8266. The video also shows how to IoT enable the Minnow Server example. See the embedded.com article [How to install a secure embedded Web server on ESP8266](https://www.embedded.com/design/prototyping-and-development/4461577/How-to-install-a-secure-embedded-web-server-on-a--3-WiFi-device) for detailed instructions.
 
@@ -81,7 +66,7 @@ In addition to the host build environments, we provide a ready to use build envi
  git clone https://github.com/RealTimeLogic/JSON.git  
  git clone https://github.com/RealTimeLogic/SMQ.git
 
-The JSON and SMQ libraries are used by the Minnow Server reference example. The SMQ stack is needed even if you do not plan on IoT enabling the reference platform since the Minnow Server uses the SMQ TCP/IP porting layer.
+The JSON and SMQ libraries are used by the Minnow Server reference example. The SMQ stack is needed even if you do not plan on IoT enabling the reference example since the Minnow Server uses the SMQ TCP/IP porting layer.
 
 **Note:** If you are not planning on IoT enabling the Minnow Server, copy the [SMQ/src/arch/](https://github.com/RealTimeLogic/SMQ/tree/master/src/arch) directory to the Minnow Server.
 
@@ -169,3 +154,10 @@ Follow the [Setting up an Online SMQ IoT Broker](https://makoserver.net/articles
 * IoT/www/smq.lsp - converts HTTP(S) connections to SMQ connections. The URL domain/smq.lsp is used by both device code and JavaScript code for setting up a persistent SMQ connection.
 * index.lsp - Looks up device by ID and forwards the request to device.htmls if device is found. The file device.htmls is a copy of the SPA main index.html file.
 
+# Embedded Web Server Considerations
+
+Consider reading the following tutorials as they may save you from serious problems down the road:
+
+* [How Anyone Can Hack Your Embedded Web Server](https://realtimelogic.com/articles/How-Anyone-Can-Hack-Your-Embedded-Web-Server)
+* [Certificate Management for Embedded Web Servers](https://realtimelogic.com/articles/Certificate-Management-for-Embedded-Systems)
+* [When Not to Embed a Web Server in a Device](https://realtimelogic.com/articles/When-Not-to-Embed-a-Web-Server-in-a-Device)
