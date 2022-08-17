@@ -30,6 +30,11 @@ The Minnow Server is one of three WebSocket server implementations provided by R
 2. The [Barracuda Web Server's WebSocket Server](https://realtimelogic.com/ba/doc/en/C/reference/html/group__WebSockets.html) enables hybrid server-side/client-side web applications to communicate using both HTTP and WebSockets.
 3. The [Barracuda App Server's WebSocket Server](https://realtimelogic.com/ba/doc/?url=SockLib.html#WebSockets) provides the easiest to use solution, where server side business logic can be designed in the easy to learn [Lua scripting language](https://realtimelogic.com/products/lua-server-pages/). With the Barracuda App Server, much of the device's high level logic can be implemented in Lua. Lua is popular in games, and now embedded systems can take a similar approach to rapid device code design. See the online [WebSocket Server Tutorial](https://tutorial.realtimelogic.com/WebSockets.lsp) for details.
 
+#### Note:
+
+Consider using the WebSocket server included with the [Barracuda Web Server](https://realtimelogic.com/products/barracuda-web-server/) if you plan on using HTTP(S) services in addition to WS(S) services and/or require a dual WSS/WS server. See the [Barracuda Web Server's WebSocket example](https://github.com/RealTimeLogic/BAS/tree/main/examples/C-WebSockets) for details.
+
+
 # Minnow Server SPA Reference Example
 
 This repository includes the Minnow Server and the Minnow Server Single Page Application (SPA) Reference Example. The Minnow Server is also included in the [SharkSSL Repository](https://github.com/RealTimeLogic/SharkSSL) and will use a secure (HTTPS) connection when used with SharkSSL, but note that the SharkSSL repository does not include the SPA Reference Example.  Check out the SharkSSL IDE if you want to easily test the Minnow Server Reference Example in secure mode (HTTPS). See the tutorial [Beginner's Guide To Secure IoT Communication and X.509 Certificate Managment](https://realtimelogic.com/articles/Noobs-friendly-Embedded-IDE-Designed-for-Learning-Secure-IoT) for details.
