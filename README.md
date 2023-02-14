@@ -50,6 +50,9 @@ The example provides a direct WebSocket server API designed for local Intranet u
 
 The optional IoT solution enables a device installed on a private network to be accessed from the Internet without having to do any network configurations. The example includes the source code for the online IoT server setup. The online server can easily be installed on any cloud solution, including low-cost Virtual Private Servers. An exciting feature of the IoT version is that it allows the external user to use a secure TLS connection when the Minnow Server is not TLS enabled.
 
+**See the tutorial [IoT Enabled Embedded Web Server](https://realtimelogic.com/articles/Device-Management-via-IoT-or-Embedded-Web-Server) for details.**
+
+
 ## Compiling the Reference Example
 
 The Minnow Server and the reference example can be compiled for any microcontroller. The Minnow Server includes many RTOS and TCP/IP stacks porting layers. However, a few code sections in the example code are designed to run on a non-RTOS environment and must be modified if you plan on compiling the example "as is" for a microcontroller. The purpose with the reference example is educational, and compiling and running the code on a host computer is the first step. You may compile the code on Windows using the included Visual C++ project file or on Linux/Mac using the included makefile.
