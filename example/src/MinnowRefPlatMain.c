@@ -644,7 +644,7 @@ sendSetTemp(ConnData* cd, int temp)
 
 
 /*
-  ["DeviceName", ["the-name"]
+  ["devname", ["the-name"]
  */
 static int
 sendDeviceName(ConnData* cd)

@@ -61,6 +61,9 @@ In addition to the host build environments, we provide a ready-to-use build envi
 
 [![ESP8266 Tutorial](https://img.youtube.com/vi/mAY2CpjYRLU/0.jpg)](https://youtu.be/mAY2CpjYRLU)
 
+### No C code option:
+> For those interested in exploring a simpler option, we also offer an alternative tutorial that demonstrates [how to run the SPA reference example using the Barracuda App Server on an ESP32](https://realtimelogic.com/articles/Your-First-Embedded-Single-Page-Application).
+
 ### Prerequisites
 
 The Minnow Server has two options for compilation: secure and non-secure. If you want to compile the server in non-secure mode, compile and link it with the porting layer in the SMQ GitHub repository. On the other hand, if you opt for secure mode, compile and link it with the secure porting layer found in the SharkSSL GitHub repository.
