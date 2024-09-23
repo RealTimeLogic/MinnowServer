@@ -39,6 +39,7 @@ endif
 ifndef PLAT
 PLAT=Posix
 ifdef USE_SHARKSSL
+CFLAGS+= -DSHARKSSL_USE_SHA1
 CFLAGS+=$(IFT)../../../SharkSSL/inc/arch/Posix $(IFT)../../../SharkSSL/src/arch/Posix
 else
 CFLAGS+=$(IFT)../../../SMQ/src/arch/Posix
